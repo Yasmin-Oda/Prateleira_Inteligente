@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Descubra o que seu consumidor pensa!</h1>
+    <h2>Calculadora de satisfação</h2>
+    <span>Digite quantos produtos você vende no mercado por mês:</span>
+    <input type="text" id="id_qtd"><br>
+    <span>Digite o preço do produto:</span>
+    <input type="text" id="id_preco"><br>
+    <button onclick="simularMal()">Simular mal</button>
+    <button onclick="simularBem()">Simular bem</button>
+    <button onclick="simularPouco()">Simular poucas interações</button><br><br>
+    <span id="id_result"></span>
+
+</body>
+<script>
+    function simularMal(){
+        let qtd=Number(id_qtd.value)
+        let preco=Number(id_preco.value)
+        let total=qtd*preco
+        let interacao=qtd*2
+        id_result.innerHTML=`Você fatura em média ${total} por mês<br>
+                            porém a desistência do seu produto é de ${qtd/interacao*100}%`
+    }
+        function simularBem(){
+        let qtd=Number(id_qtd.value)
+        let preco=Number(id_preco.value)
+        let total=qtd*preco
+        let interacao=qtd
+        id_result.innerHTML=`Você fatura em média ${total} por mês<br>
+                            a desistência do seu produto é de  ${qtd-interacao}% muito bem`
+    }
+            function simularPouco(){
+        let qtd=Number(id_qtd.value)
+        let preco=Number(id_preco.value)
+        let total=qtd*preco
+        let interacao=qtd*0.1
+        id_result.innerHTML=`Você fatura em média ${total} por mês <br>
+                            Porém a interação com seu produto é de ${qtd/interacao}% melhor tomar providências`
+    }
+
+</script>
+</html>
