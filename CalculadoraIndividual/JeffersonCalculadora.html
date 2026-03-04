@@ -6,43 +6,47 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Descubra o que seu consumidor pensa!</h1>
-    <h2>Calculadora de satisfação</h2>
-    <span>Digite quantos produtos você vende no mercado por mês:</span>
-    <input type="text" id="id_qtd"><br>
-    <span>Digite o preço do produto:</span>
-    <input type="text" id="id_preco"><br>
-    <button onclick="simularMal()">Simular mal</button>
-    <button onclick="simularBem()">Simular bem</button>
-    <button onclick="simularPouco()">Simular poucas interações</button><br><br>
+    <h1>Descubra quanto você deixa de lucrar!!</h1>
+    <span>Digite o seu faturamento médio por mês:</span>
+    <input type="text" id="id_fat"><br>
+    <span>Digite o quanto você paga por pesquisa de campo por mês:</span>
+    <input type="text" id="id_publi"><br>
+    <button onclick="simular()">Simular</button><br>
     <span id="id_result"></span>
 
 </body>
 <script>
-    function simularMal(){
-        let qtd=Number(id_qtd.value)
-        let preco=Number(id_preco.value)
-        let total=qtd*preco
-        let interacao=qtd*2
-        id_result.innerHTML=`Você fatura em média ${total} por mês<br>
-                            porém a desistência do seu produto é de ${qtd/interacao*100}%`
+    let contador=0;
+    let totalCPrat=0;
+    let totalCPubli=0;
+    let sistema=200;//valor pelo uso do sistema
+    let valorPrateleira=5000;//valor do projeto pode mudar
+    function simular(){
+        contador+=1;
+        let faturamento=Number(id_fat.value)
+        let publi=Number(id_publi.value)
+        
+        //verifica se tem pesquisaDeCampo
+        if(publi>1000){
+            //total+faturamento+10%-pesquisa
+            totalCPubli=faturamento*1.1+totalCPubli-publi
+        }else{
+            totalCPubli+=faturamento;
+        }
+        //Cobra só uma vez pela prateleira
+        if(contador==1){
+            //faturamento+10%-valorPrateleira
+            totalCPrat+=faturamento*1.1-(valorPrateleira+sistema);
+        }else{
+            //faturamento+10%
+            totalCPrat=totalCPrat+faturamento*1.1-sistema;
+        }
+        //exibição
+        id_result.innerHTML=`Valor do mês ${contador}:<br>
+         Faturamento:R$${faturamento.toFixed(2)} <br>
+        Gastos com pesquisas de campo:R$${publi.toFixed(2)}<br>
+        Total de faturamento com pesquisas de campo:R$${totalCPubli.toFixed(2)}<br>
+        Total de faturamento com prateleira inteligente:R$${totalCPrat.toFixed(2)}<br>`
     }
-        function simularBem(){
-        let qtd=Number(id_qtd.value)
-        let preco=Number(id_preco.value)
-        let total=qtd*preco
-        let interacao=qtd
-        id_result.innerHTML=`Você fatura em média ${total} por mês<br>
-                            a desistência do seu produto é de  ${qtd-interacao}% muito bem`
-    }
-            function simularPouco(){
-        let qtd=Number(id_qtd.value)
-        let preco=Number(id_preco.value)
-        let total=qtd*preco
-        let interacao=qtd*0.1
-        id_result.innerHTML=`Você fatura em média ${total} por mês <br>
-                            Porém a interação com seu produto é de ${qtd/interacao}% melhor tomar providências`
-    }
-
 </script>
 </html>
