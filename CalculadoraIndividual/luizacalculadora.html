@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Conversão de Vendas</title>
+</head>
+<body>
+
+<h3>Conversão de Vendas</h3>
+
+Quantas vendas foram feitas no mês? <br>
+<input type="number" id="input_vendas"> <br> <br>
+
+
+<button onclick="analisar()">Calcular Desempenho</button>
+
+
+<div id="div_mensagem"></div>
+
+</body>
+
+<script>
+    function analisar() {
+    
+    let vendas = Number (input_vendas.value);
+    let mes = 30;
+
+    let resultadoCalculo = (vendas * mes) / 100;
+    
+    if (resultadoCalculo < 20) {
+
+        div_mensagem.innerHTML = `<br>Status: Alerta! ${resultadoCalculo} % pouca conversão. 
+        <br>Segundo a ASSERJ (2026), produtos de higiene possuem alta recorrência de compra 
+        no varejo físico e são influenciados pela exposição em preteleira.
+        <br> Fonte: ASSERJ - "Higiene vira motor de vendas no varejo supermercadista" (2026)`;
+    } 
+    else {
+        div_mensagem.innerHTML = `<br>Status: ${resultadoCalculo} % ótimo desempenho!
+        <br> Considerando que produtos de higiene apresentam forte presença no varejo fisíco
+        e que a exposição impacta a decisão de compra.
+        <br> Fonte: ASSERJ - "Higiene vira motor de vendas no varejo supermercadista" (2026)`;
+    }
+}
+</script>
