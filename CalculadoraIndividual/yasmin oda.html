@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+<h1>Smart Insight</h1>
+    Faturamento mensal atual (R$): <input type="text" id="input_faturamento"><br><br>
+    <button onclick="CalcularPerda()">Calcular potencial</button><br><br>
+
+    <div id="div_mensagem"></div>
+    
+</body>
+</html>
+
+<script>
+    function CalcularPerda() {
+
+        let faturamento = Number(input_faturamento.value);
+        let taxaAbandono = 0.70; // Taxa de abandono (70%)
+        let taxaConversao = 1 - taxaAbandono; // Conversão real (100% - 70%)
+        let potencialTotal = faturamento / taxaConversao;  // Potencial total de vendas
+        let valorPerdido = potencialTotal - faturamento; // Perdido
+        let faturamentoSI= faturamento * 1.15; //faturamento com smart insight 
+
+
+        div_mensagem.innerHTML = `O valor arrecadado no fim do mês foi de <b> R$${faturamento} </b> , mas o seu potencial máximo era de <b> R$${potencialTotal.toFixed(2)} </b> <br><br> 
+            Com isso o valor perdido foi de: <b> R$${valorPerdido.toFixed(2)} </b> <br><br>
+            Com o smart insight, a receita média de vendas seria de <b> R$${faturamentoSI.toFixed(2)} </b> <br> <br>
+            "Segundo dados recentes do Content Square, de acordo com padrões da indústria, a taxa de conversão média em vendas em lojas físicas geralmente varia em torno de 30%." <br><br><b>
+            Com a Smart Insight, sua empresa pode usar dados reais de comportamento
+            para reduzir perdas e transformar interesse em faturamento.</b>`
+        ;
+
+    }
+</script>
