@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Calcule a perda em produtos não convertidos na sua empresa</h1>
+    Digite quantos produtos de cosméticos você vende diariamente:
+    <input type="text" id="ipt_qtd"> <br> <br>
+
+    Digite qual é o preço do produto:
+    <input type="text" id="ipt_preco"> <br> <br>
+
+    Digite a porcentagem de produtos não vendidos:
+    <input type="text" id="ipt_n_vendido">
+<h5>   *sabendo que a média de produtos de cosméticos não convertidos é 6.2%, de acordo com a global cosmetic industry </h5>
+    <button onclick="calculo()">Clique aqui para</button>
+    <div id="div_mensagem"></div>
+</body>
+<script>
+    function calculo(){
+        let quantidade=Number(ipt_qtd.value);
+        let preco=Number(ipt_preco.value);
+        let desperdicio=Number(ipt_n_vendido.value);
+let perda= quantidade * preco * desperdicio / 100;
+let total= quantidade * preco;
+div_mensagem.innerHTML=`Você poderia ter feito R$${total} no total, mas acabou deixando R$${perda} para trás.`
+    }
+</script>
+</html>
