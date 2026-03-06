@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Faturamento Médio Mensal:
+    <input type="text" id="ipt_faturamento">
+    <br> <br>
+    Investimento Mensal:
+    <input type="text" id="ipt_investimento">
+    <br> <br>
+    Investimento com Marketing:
+    <input type="text" id="ipt_marketing">
+    <br> <br>
+    Produtos na Prateleira:
+    <input type="text" id="ipt_produtosPrateleira">
+    <br> <br>
+    Quantidade de Produtos Vendidos:
+    <input type="text" id="ipt_vendas">
+    <br> <br>
+    <button onclick="gerarDados()">Gerar Dados</button>
+    <div id="exibir"></div>
+</body>
+</html>
+
+<script>
+    function gerarDados() {
+        let faturamentoMedio = Number(ipt_faturamento.value)
+        let investimento = Number(ipt_investimento.value)
+        let investimentoMarketing = Number(ipt_marketing.
+        value)
+        let produtosPrateleira = Number(ipt_produtosPrateleira)
+        let produtosVendidos = Number(ipt_vendas.value)
+        let lucroReal = faturamentoMedio - investimento - investimentoMarketing
+        let valorPorProduto = faturamentoMedio / produtosVendidos
+        let faturamentoPotencial = valorPorProduto *produtosPrateleira
+        let lucroPotencial = faturamentoPotencial - investimento - investimentoMarketing
+        let lucroPerdido = lucroPotencial - lucroReal
+        let percentualPerdido = (lucroPerdido / lucroPotencial) * 100  
+
+        exibir.innerHTML = `Lucro Real ${lucroReal} <br>
+        Lucro Potencial ${lucroPotencial} <br>
+        Percentual de lucro perdido ${percentualPerdido}%`
+    }
+</script>
