@@ -19,8 +19,8 @@
     function CalcularPerda() {
 
         let faturamento = Number(input_faturamento.value);
-        let taxaAbandono = 0.70; // Taxa de abandono (70%)
-        let taxaConversao = 1 - taxaAbandono; // Conversão real (100% - 70%)
+        let taxaAbandono = 0.3; // Taxa de abandono (30%)
+        let taxaConversao = 1 - taxaAbandono; // Conversão real (100% - 30%)
         let potencialTotal = faturamento / taxaConversao;  // Potencial total de vendas
         let valorPerdido = potencialTotal - faturamento; // Perdido
         let faturamentoSI= faturamento * 1.15; //faturamento com smart insight 

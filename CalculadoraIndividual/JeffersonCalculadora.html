@@ -13,7 +13,6 @@
     <input type="text" id="id_publi"><br>
     <button onclick="simular()">Simular</button><br>
     <span id="id_result"></span>
-
 </body>
 <script>
     let contador=0;
@@ -24,8 +23,7 @@
     function simular(){
         contador+=1;
         let faturamento=Number(id_fat.value)
-        let publi=Number(id_publi.value)
-        
+        let publi=Number(id_publi.value)    
         //verifica se tem pesquisaDeCampo
         if(publi>1000){
             //total+faturamento+10%-pesquisa

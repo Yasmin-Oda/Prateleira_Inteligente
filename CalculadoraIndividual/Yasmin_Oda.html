@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+<h1>Calculadora Smart Insight</h1>
+    Faturamento mensal atual (R$): <input type="text" id="input_faturamento"><br><br>
+    <button onclick="CalcularPerda()">Calcular potencial</button><br><br>
+
+    <div id="div_mensagem"></div>
+    
+</body>
+</html>
+
+<script>
+    function CalcularPerda() {
+        let faturamento = Number(input_faturamento.value);
+        let taxaAbandono = 0.7030; // Taxa de abandono (6.2%)
+        let taxaConversao = 1 - taxaAbandono; // Conversão real (100% - 6.2%)
+        let potencialTotal = faturamento / taxaConversao;  // Potencial total de vendas
+        let faturamentoSI=faturamento*1.3;//faturamento com smart insight
+        let valorPerdido = potencialTotal - faturamento; // Perdido
+        div_mensagem.innerHTML = `Potencial total estimado de vendas: R$${potencialTotal.toFixed(2)} <br><br>
+            Potencial médio de vendas com a Smart Insight:R$${faturamentoSI}<br>  
+            
+            Valor estimado perdido com Smart Insight: R$${(valorPerdido-faturamentoSI*0.3).toFixed(2)}<br>
+            Valor estimado perdido sem Smart Insight: R$ ${valorPerdido.toFixed(2)} <br>
+            "Segundo dados recentes do Baymard Institute, que analisou mais de 48 estudos, 
+            a taxa média global de abandono de carrinho em 2025 é de 70,19%. <br>
+            Isso significa que apenas 29,81% do potencial de compra é convertido em venda".<br><br><b>
+            Com a Smart Insight, sua empresa pode usar dados reais de comportamento
+            para reduzir perdas e transformar interesse em faturamento.</b>`
+        ;
+
+
+    }
+</script>
