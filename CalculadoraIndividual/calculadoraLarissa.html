@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <h1>Calculadora Smart Insight</h1>
+    Quantos produtos seriam fornecidos: <input id="input_qtdprodutos" type="text"><br><br>
+    Qual o valor do produto de interesse (R$): <input id="input_valorproduto" type="text"><br><br>
+    Quer gerar os dados referente a quanto tempo? (dias)<input id="input_dias" type="text"><br><br>
+    <button onclick="gerando()">Gerar Dados</button><br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+ function gerando() {
+   
+    let qtProdutos = Number(input_qtdprodutos.value)
+    let valorUnit = Number(input_valorproduto.value)
+    let valorTotal = qtProdutos * valorUnit
+    let qtDias = Number(input_dias.value)
+    let valorDiario = valorTotal / qtDias
+    let produtosPorDia = qtProdutos / qtDias
+
+    div_mensagem.innerHTML = `<b>Com a Smart Insight, sua empresa contará com dados precisos para desenvolver uma estratégia de marketing altamente eficaz, potencializando ao máximo suas chances de atingir 100% de conversão em vendas.</b><br><br><br>
+    Ao longo de ${qtDias} dias, você venderia em média ${produtosPorDia.toFixed(0)} produtos por dia, 
+    alcançando um total de R$ ${valorTotal.toFixed(2)} ao final do período, considerando a venda de todos os produtos.<br><br>`
+
+ }
+
+</script>
