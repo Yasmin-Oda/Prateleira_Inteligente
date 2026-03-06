@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+
+<h2><b>SIMULE O IMPACTO DA SMART INSIGHT!</b></h2>
+
+Aproximações Registradas (através do sensor): 200 <br> 
+
+Tempo Médio de Permanência em segundos (através do sensor): 30 <br>
+
+Preço Médio do Produto (R$):
+<input id="ipt_precoMedio"><br>
+
+Número Simulado de Cliente que compraram: (0 a 200)
+<input id="ipt_numVendas"><br><br> 
+
+<button onclick="Simular()">Simular Aplicação</button>
+
+<div id="mensagem"></div>
+
+</body>
+</html>
+
+<script>
+function Simular() {
+    let qtdAproximacoes = 200
+    let tempoVisualizacao = 30
+    let precoMedio = Number(ipt_precoMedio.value)
+    let qtdVendas = Number(ipt_numVendas.value)
+
+    
+    let taxa_de_conversao = (qtdVendas / qtdAproximacoes) * 100
+    let taxa_nao_vendas = 100 - taxa_de_conversao;
+
+    let oportunidadesPerdidas = qtdAproximacoes - qtdVendas //clientes que nao compraram
+    let valorPerdido = oportunidadesPerdidas * precoMedio
+    let vendasRecuperadas = oportunidadesPerdidas * 0.15 //recupera em 15%
+    
+    let vendasComSistema = qtdVendas + vendasRecuperadas 
+    let novaTaxaConversao = (vendasComSistema / qtdAproximacoes) * 100
+    let novaTaxaNaoVendas = 100 - novaTaxaConversao
+
+    let valorGanho = (vendasComSistema - qtdVendas) * precoMedio
+
+    mensagem.innerHTML = ""
+
+    if (taxa_nao_vendas > 60) {
+        mensagem.innerHTML += ` <br>
+        <span style="background:red;color:white;">
+        - Alta taxa de não vendas (${taxa_nao_vendas.toFixed(2)}%)<br>
+        - Produto com alto interesse, mas baixa conversão<br>
+        - Possível problema de preço ou concorrência
+        </span><br><br>`;
+    } 
+    
+    else if (taxa_nao_vendas > 30) {
+        mensagem.innerHTML += ` <br>
+        <span style="background:yellow;color:black;">
+        - Produto gera interesse moderado<br>
+        - Conversão pode melhorar com promoções ou sua posição
+        </span><br><br>`;
+    } 
+    
+    else {
+        mensagem.innerHTML += ` <br>
+        <span style="background:green;color:white;">
+        - Produto bem posicionado<br>
+        - Boa percepção de valor<br>
+        - Conversão satisfatória
+        </span><br><br>`;
+    }
+
+    mensagem.innerHTML += `
+    <b>COM A IMPLEMENTAÇÃO DO NOSSO SISTEMA:</b><br><br>
+    Taxa de não vendas antes da implementação: ${taxa_nao_vendas.toFixed(2)}%<br>
+    Nova taxa de não vendas: ${novaTaxaNaoVendas.toFixed(2)}%<br><br>
+
+    Taxa anterior de conversão: ${taxa_de_conversao.toFixed(2)}%<br>
+    Nova taxa de conversão: ${novaTaxaConversao.toFixed(2)}%<br><br>
+
+    Valor potencial perdido com a perde da interesse : R$ ${valorPerdido.toFixed(2)} <br>
+    Valor estimado recuperado com a solução Smart Insight   : R$ ${valorGanho.toFixed(2)}<br>
+    Tempo médio de interesse do cliente sobre o produto: ${tempoVisualizacao} segundos
+    `;
+}
+
+</script>
