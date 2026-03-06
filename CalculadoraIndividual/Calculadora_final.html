@@ -7,7 +7,9 @@
 </head>
 <body>
 <h1>Smart Insight</h1>
-    Faturamento mensal atual (R$): <input type="text" id="input_faturamento"><br><br>
+    Quantidade de estoque por mês: <input type="text" id="id_estq"><br>
+    Quantidade vendida: <input type="text" id="id_qtdVD"><br>
+    Valor do produto: <input type="text" id="id_valor"><br><br>
     <button onclick="CalcularPerda()">Calcular potencial</button><br><br>
 
     <div id="div_mensagem"></div>
@@ -17,21 +19,21 @@
 
 <script>
     function CalcularPerda() {
-
-        let faturamento = Number(input_faturamento.value);
-        let taxaAbandono = 0.7; // Taxa de abandono (30%)
-        let taxaConversao = 1 - taxaAbandono; // Conversão real (100% - 30%)
+        let valor= Number(id_valor.value);
+        let qtdVend=Number(id_qtdVD.value);
+        let qtdEstoque=Number(id_estq.value);
+        let faturamento = qtdVend*valor;
+        let taxaAbandono = (qtdEstoque-qtdVend)/qtdEstoque;
+        let taxaConversao = 1 - taxaAbandono; // Conversão real (100% - x%)
         let potencialTotal = faturamento / taxaConversao;  // Potencial total de vendas
-        let valorPerdido = potencialTotal - faturamento; // Perdido
+        let valorPerdido = potencialTotal - faturamento; //valor Perdido
         let faturamentoSI= faturamento * 1.15; //faturamento com smart insight 
 
-
-        div_mensagem.innerHTML = `O valor arrecadado no fim do mês foi de <b> R$${faturamento} </b> , mas o seu potencial máximo era de <b> R$${potencialTotal.toFixed(2)} </b> <br><br> 
-            Com isso o valor perdido foi de: <b> R$${valorPerdido.toFixed(2)} </b> <br><br>
-            Com o smart insight, a receita média de vendas seria de <b> R$${faturamentoSI.toFixed(2)} </b> <br> <br>
-            "Segundo dados recentes do Content Square, de acordo com padrões da indústria, a taxa de conversão média em vendas em lojas físicas geralmente varia em torno de 30%." <br><br><b>
-            Com a Smart Insight, sua empresa pode usar dados reais de comportamento
-            para reduzir perdas e transformar interesse em faturamento.</b>`
+        div_mensagem.innerHTML = `O valor arrecadado no fim do mês foi de <b> R$${faturamento} </b> , <br>
+            mas o seu potencial máximo era de <b> R$${potencialTotal.toFixed(2)} </b> <br><br> 
+            Com isso o valor perdido foi de: <b style="color:red"> R$${valorPerdido.toFixed(2)}</b> com uma perda de <b style="color:red">${taxaAbandono*100}% </b><br><br>
+            Com a smart insight, o seu faturamento pode aumentar até <b style="color:green">15%</b> mudando seu faturamento para <b style="color:green"> R$${faturamentoSI.toFixed(2)} </b> <br> <br>
+            `
         ;
 
     }
