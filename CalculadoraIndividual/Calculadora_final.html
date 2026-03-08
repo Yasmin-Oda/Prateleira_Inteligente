@@ -28,14 +28,16 @@
         let potencialTotal = faturamento / taxaConversao;  // Potencial total de vendas
         let valorPerdido = potencialTotal - faturamento; //valor Perdido
         let faturamentoSI= faturamento * 1.19; //faturamento com smart insight
+
         div_mensagem.innerHTML=`O valor arrecadado no fim do mês foi de <b> R$${faturamento} </b> , <br>` 
         let textoPadraoSemSerZero=`mas o seu potencial máximo era de <b> R$${potencialTotal.toFixed(2)} </b> <br><br> 
             Com isso o valor perdido foi de: <b style="color:red"> R$${valorPerdido.toFixed(2)}</b> com uma perda de <b style="color:red">${taxaAbandono*100}%. </b><br>`
         let textoSI=`Mas com a smart insight, o seu faturamento pode aumentar até <b style="color:green">19%</b> <br>mudando seu faturamento para <b style="color:green"> R$${faturamentoSI.toFixed(2)} </b>
         desde que tenha estoque para isso.`
+
             if(taxaAbandono>=0.19){
             div_mensagem.innerHTML+=`${textoPadraoSemSerZero}
-            com a smart insight, o seu faturamento pode aumentar até <b style="color:green">15%</b> <br>
+            com a smart insight, o seu faturamento pode aumentar até <b style="color:green">19%</b> <br>
             mudando seu faturamento para <b style="color:green"> R$${faturamentoSI.toFixed(2)} </b> <br>`
         }else if(taxaAbandono==0){
             div_mensagem.innerHTML+=`sem perdas no faturamento,<br>
